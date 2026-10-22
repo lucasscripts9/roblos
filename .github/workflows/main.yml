@@ -7,12 +7,12 @@ permissions:
   contents: read
 
 jobs:
-  pc-virtual:
+  anydesk:
     runs-on: windows-latest
     timeout-minutes: 180
 
     steps:
-      - name: Install
+      - name: Install AnyDesk and set up connection
         timeout-minutes: 15
         run: |
           $chars = "abcdefghjkmnpqrstuvwxyz23456789".ToCharArray()
@@ -48,7 +48,7 @@ jobs:
           Write-Host "Password: $pw"
           Write-Host "=============================="
 
-      - name: Stay alive
+      - name: Keep PC alive
         run: |
           $end = (Get-Date).AddMinutes(350)
           while ((Get-Date) -lt $end) { Start-Sleep -Seconds 60 }
